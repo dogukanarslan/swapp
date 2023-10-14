@@ -1,4 +1,5 @@
 import { useFetch } from '../hooks/useFetch'
+import { PeopleModel } from './PeopleList'
 
 type PeopleDetailModel = {
   name: string
@@ -6,13 +7,15 @@ type PeopleDetailModel = {
 }
 
 interface PeopleDetailProps {
-  selectedUrl?: string
+  selectedPeople?: PeopleModel
 }
 
 export const PeopleDetail = (props: PeopleDetailProps) => {
-  const { selectedUrl } = props
+  const { selectedPeople } = props
 
-  const { data, isPending } = useFetch<PeopleDetailModel>(selectedUrl || '')
+  const { data, isPending } = useFetch<PeopleDetailModel>(
+    selectedPeople?.url || '',
+  )
 
   return (
     <>
